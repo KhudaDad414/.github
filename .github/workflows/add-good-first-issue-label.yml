@@ -1,0 +1,23 @@
+#This workflow is centrally managed in https://github.com/asyncapi/.github/
+#Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in above mentioned repo
+
+#Purpose of this workflow is to enable anyone to label PR with 'Good First Issue','complexity/*' and 'area/*' labels to an issue with a single command.
+name: Add 'Good First Issue', 'complexity/*' and 'area/*' labels # if proper comment added
+
+on: issue_comment
+
+jobs:
+  parse-comment-and-add-ready: # for handling cases when you want to mark as ready to merge
+    if: github.event.issue && github.event.issue.state != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label
+        if: contains(github.event.comment.body, '/good-first-issue') || contains(github.event.comment.body, '/gfi' )
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          script: |
+            const complexities = ['easy', 'medium', 'challenging'];
+            const areas = ['javascript', 'typescript', 'markdown', 'docs', 'github-actions'];
+            const values = github.event.comment.body.split(" ");
+            console.log(values);
