@@ -7,7 +7,7 @@ on: [issue_comment]
 
 jobs:
   create_help_comment:
-    if: contains(github.event.comment.body, '/help')
+    if: startsWith(github.event.comment.body, '/help')
     runs-on: ubuntu-latest
     steps:
       - uses: actions-ecosystem/action-create-comment@v1
