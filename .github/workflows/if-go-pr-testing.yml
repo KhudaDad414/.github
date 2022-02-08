@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github.repository) }}'
+        run: echo '${{ toJSON(github.event.repository) }}'
       - if: "github.event.pull_request.draft == false &&!((github.actor == 'khudadad414' && startsWith(github.event.pull_request.title, 'ci: update global workflows')) || (github.actor == 'asyncapi-bot' && startsWith(github.event.pull_request.title, 'chore(release):')) || (github.actor == 'allcontributors' && startsWith(github.event.pull_request.title, 'docs: add')))"
         id: should_run
         name: Should Run
