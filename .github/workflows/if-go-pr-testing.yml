@@ -43,7 +43,9 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - name: print context
-        run: echo ${{github.event}} | python -m json.tool
+        run: echo $EVENT | python -m json.tool
+        env:
+          EVENT: ${{github.event}}
       - if: "github.event.pull_request.draft == false &&!((github.actor == 'khudadad414' && startsWith(github.event.pull_request.title, 'ci: update global workflows')) || (github.actor == 'asyncapi-bot' && startsWith(github.event.pull_request.title, 'chore(release):')) || (github.actor == 'allcontributors' && startsWith(github.event.pull_request.title, 'docs: add')))"
         id: should_run
         name: Should Run
