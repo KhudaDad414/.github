@@ -12,8 +12,6 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - name: print context
-        run: echo "${{github.event}}"
       - if: "github.event.pull_request.draft == false &&!((github.actor == 'khudadad414' && startsWith(github.event.pull_request.title, 'ci: update global workflows')) || (github.actor == 'asyncapi-bot' && startsWith(github.event.pull_request.title, 'chore(release):')) || (github.actor == 'allcontributors' && startsWith(github.event.pull_request.title, 'docs: add')))"
         id: should_run
         name: Should Run
@@ -44,6 +42,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
+      - name: print context
+        run: echo "${{github.event}}"
       - if: "github.event.pull_request.draft == false &&!((github.actor == 'khudadad414' && startsWith(github.event.pull_request.title, 'ci: update global workflows')) || (github.actor == 'asyncapi-bot' && startsWith(github.event.pull_request.title, 'chore(release):')) || (github.actor == 'allcontributors' && startsWith(github.event.pull_request.title, 'docs: add')))"
         id: should_run
         name: Should Run
