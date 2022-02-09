@@ -13,7 +13,7 @@ on:
 # asyncapi-bot
 jobs:
   welcome:
-    if: ${{ !contains(fromJson("['Khudadad414', 'dependabot[bot]', 'dependabot-preview[bot]', 'allcontributors'])", github.actor) }}
+    if: ${{ !contains(fromJson('["Khudadad414", "dependabot[bot]", "dependabot-preview[bot]", "allcontributors"]'), github.actor) }}
     
     runs-on: ubuntu-latest
     steps:
