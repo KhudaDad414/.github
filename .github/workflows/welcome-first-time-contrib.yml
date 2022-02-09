@@ -13,7 +13,7 @@ on:
 
 jobs:
   welcome:
-    if: github.actor !== 'khudadad414'
+    if: github.actor != 'khudadad414'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/github-script@v3
