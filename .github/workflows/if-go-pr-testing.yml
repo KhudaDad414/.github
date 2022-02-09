@@ -65,4 +65,3 @@ jobs:
       - if: steps.gomod.outputs.exists == 'true'
         name: Test
         run: go test -v ./...
- 
