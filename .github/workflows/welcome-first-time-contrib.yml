@@ -13,7 +13,7 @@ on:
 
 jobs:
   welcome:
-    if: github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' &&github.actor != 'dependabot-preview[bot]' && github.actor != 'allcontributors'
+    if: github.actor != 'khudadad414' && github.actor != 'dependabot[bot]' &&github.actor != 'dependabot-preview[bot]' && github.actor != 'allcontributors'
     
     runs-on: ubuntu-latest
     steps:
