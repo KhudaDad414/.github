@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Assign Reviewers
-        uses: ohnogumi/auto-reviewers@v0.0.3
+        uses: khudadad414/auto-reviewers@main
 
         with:
          token: "${{ secrets.GITHUB_TOKEN }}"
