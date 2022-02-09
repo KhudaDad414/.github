@@ -10,10 +10,10 @@ on:
   issues:
     types:
       - opened
-# asyncapi-bot
+
 jobs:
   welcome:
-    if: ${{ !contains(fromJson('["Khudadad414", "dependabot[bot]", "dependabot-preview[bot]", "allcontributors"]'), github.actor) }}
+    if: github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' &&github.actor != 'dependabot-preview[bot]' && github.actor != 'allcontributors'
     
     runs-on: ubuntu-latest
     steps:
