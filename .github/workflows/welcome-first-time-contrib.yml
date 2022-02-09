@@ -13,7 +13,8 @@ on:
 
 jobs:
   welcome:
-    if: github.actor != 'khudadad414'
+    if: ${{!contains(['asyncapi-bot', 'dependabot[bot]', 'dependabot-preview[bot]', 'allcontributors'], github.actor)}}
+    
     runs-on: ubuntu-latest
     steps:
     - uses: actions/github-script@v3
