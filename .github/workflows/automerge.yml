@@ -22,7 +22,7 @@ jobs:
   autoapprove:
     if: >
       github.event.pull_request.draft == false &&
-      contains(fromJson('["asyncapi-bot", "dependabot[bot]", "dependabot-preview[bot]"]'), github.event.pull_request.user.login) &&
+      contains(fromJson('["khudadad414", "dependabot[bot]", "dependabot-preview[bot]"]'), github.event.pull_request.user.login) &&
       !contains(github.event.pull_request.labels.*.name, 'released')
     runs-on: ubuntu-latest
     steps:
