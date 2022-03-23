@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions-ecosystem/action-create-comment@v1
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Hello, @${{ github.actor }}! 👋🏼 
 
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions-ecosystem/action-create-comment@v1
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Hello, @${{ github.actor }}! 👋🏼 
 
