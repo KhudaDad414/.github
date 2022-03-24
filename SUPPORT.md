@@ -9,3 +9,4 @@ There are several ways to communicate with the AsyncAPI community to get support
 * Watch content of our [YouTube Channel](https://www.youtube.com/playlist?list=PLbi1gRlP7pijUwZJErzyYf_Rc-PWu4lXS).
 * Subscribe to the [Newsletter](https://www.asyncapi.com/subscribe/) to learn about the status of the project.
 * Reach out to us on social media like [Twitter](https://twitter.com/AsyncAPISpec) or [Linkedin](https://www.linkedin.com/company/asyncapi/).
+* 
