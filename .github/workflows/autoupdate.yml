@@ -33,6 +33,6 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           PR_FILTER: 'labelled'
-          PR_LABELS: 'auto-update'
+          PR_LABELS: 'autoupdate'
           PR_READY_STATE: 'ready_for_review'
           MERGE_CONFLICT_ACTION: 'ignore'
