@@ -44,7 +44,10 @@ jobs:
               repo: pull.head.repo.name,
               basehead: `${pull.head.label}...${pull.base.label}`,
             });
-            if (comparison.behind_by !== 0) isUpToDate = false;
+            if (comparison.behind_by !== 0){
+              console.log(`this branch is behind by: ${comparison.behind_by} commits.`);
+              isUpToDate = false;
+            } 
             return { isDraft, isUpToDate };
             
       - uses: actions-ecosystem/action-create-comment@v1
