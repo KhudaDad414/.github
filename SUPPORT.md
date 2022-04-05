@@ -1,5 +1,6 @@
 There are several ways to communicate with the AsyncAPI community to get support:
 
+
 * GitHub issues - for bugs and feature requests.
 * GitHub pull requests (PRs) - for fixes or new features already discussed under GitHub issues.
 * Talk to us in our [Slack workspace](https://www.asyncapi.com/slack-invite).
