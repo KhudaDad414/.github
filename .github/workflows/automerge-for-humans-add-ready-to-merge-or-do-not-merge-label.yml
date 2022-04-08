@@ -49,9 +49,9 @@ jobs:
             return { isDraft, isUpToDate };
             
       - uses: actions-ecosystem/action-create-comment@v1
-        if: ${{ !fromJson(steps.checkPR.outputs.result).isUpToDate }}
+        if: ${{ !steps.checkPR.outputs.result.isUpToDate }}
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Hello, @${{ github.actor }}! 👋🏼
             This PR is not up to date with the base branch and can't be merged.
@@ -59,10 +59,10 @@ jobs:
             PRO-TIP: Add a comment to your PR with the text: `/au` or `/autoupdate` and our bot will take care of updating the branch in the future. The only requirement for this to work is to enable [Allow edits from maintainers](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) option in your PR.
             Thanks 😄 
       - name: Add ready-to-merge label
-        if: ${{ !fromJson(steps.checkPR.outputs.result).isDraft }}
+        if: ${{ !steps.checkPR.outputs.result.isDraft }}
         uses: actions/github-script@v5
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
@@ -84,7 +84,7 @@ jobs:
       - name: Add do-not-merge label
         uses: actions/github-script@v5
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
