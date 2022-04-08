@@ -29,6 +29,7 @@ jobs:
         uses: actions/github-script@v5
         id: checkPR
         with:
+          result-encoding: string
           script: |
             let isDraft = false;
             let isUpToDate = true;
@@ -45,10 +46,10 @@ jobs:
               console.log(`This branch is behind the target by ${comparison.behind_by} commits`)
               isUpToDate = false;
             } else console.log(`This branch is up-to-date.`)
-            return { isDraft, isUpToDate };
+            return !isDraft && isUpToDate;
             
       - uses: actions-ecosystem/action-create-comment@v1
-        if: ${{ !steps.checkPR.outputs.result.isUpToDate }}
+        if: steps.checkPR.outputs.result != 'false'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
@@ -58,7 +59,7 @@ jobs:
             PRO-TIP: Add a comment to your PR with the text: `/au` or `/autoupdate` and our bot will take care of updating the branch in the future. The only requirement for this to work is to enable [Allow edits from maintainers](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) option in your PR.
             Thanks 😄 
       - name: Add ready-to-merge label
-        if: ${{ !steps.checkPR.outputs.result.isDraft }}
+        if: steps.checkPR.outputs.result != 'false'
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
