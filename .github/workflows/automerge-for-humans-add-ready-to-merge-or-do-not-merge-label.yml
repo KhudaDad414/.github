@@ -29,7 +29,6 @@ jobs:
         uses: actions/github-script@v5
         id: checkPR
         with:
-          result-encoding: string
           script: |
             let isDraft = false;
             let isUpToDate = true;
