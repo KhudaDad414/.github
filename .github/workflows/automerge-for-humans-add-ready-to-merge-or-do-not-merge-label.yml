@@ -29,11 +29,12 @@ jobs:
       - name: Add ready-to-merge label
         uses: actions/github-script@v5
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prDetailsUrl = context.payload.issue.pull_request.url;
             const { data: pull } = await github.request(prDetailsUrl);
             const { draft: isDraft} = pull;
+            console.log(pull);
             if(!isDraft) {
               console.log('adding ready-to-merge label...');
               github.rest.issues.addLabels({
