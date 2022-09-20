@@ -40,4 +40,4 @@ jobs:
           script: |
             let files = `${{ steps.changed-files.outputs.all_changed_files }}`
             const script = require('.github/scripts/validate-workflow-schema.js');
-            script(files);
+            await script(files);

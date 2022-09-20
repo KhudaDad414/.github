@@ -3,14 +3,14 @@ const core = require('@actions/core');
 const Ajv = require('ajv');
 const yaml = require('js-yaml');
 const fs = require('fs');
+const axios = require('axios').default;
 
-function validateYmlSchema(filename){
+async function validateYmlSchema(filename){
     // Read the schema and workflow file synchronously
-    let schema = fs.readFileSync('.github/scripts/yml-schema.json', {encoding:'utf8', flag:'r'});
-    schema = JSON.parse(schema);
+    const response = await axios.get('https://json.schemastore.org/github-workflow.json');
     const file = fs.readFileSync(filename, 'utf8');
     try{
-        const target = yaml.load(file);
+        const target = yaml.load(response);
         const ajv = new Ajv({ strict: false, allErrors: true });
         const validator = ajv.compile(schema);
         const valid = validator(target);
@@ -35,7 +35,7 @@ function validateYmlSchema(filename){
     } 
 }
 
-module.exports = (allFiles) => {
+module.exports = async (allFiles) => {
     const allLogs = {}
     allFiles = allFiles.split(' ');
     for(file of allFiles){
