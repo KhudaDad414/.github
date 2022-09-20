@@ -5,15 +5,12 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const axios = require('axios').default;
 
-async function validateYmlSchema(filename){
+function validateYmlSchema(filename, validator){
+    
     // Read the schema and workflow file synchronously
-    const response = await axios.get('https://json.schemastore.org/github-workflow.json',{responseType: 'application/json'});
-    const schema = response.data;
     const file = fs.readFileSync(filename, 'utf8');
     try{
         const target = yaml.load(file);
-        const ajv = new Ajv({ strict: false, allErrors: true });
-        const validator = ajv.compile(schema);
         const valid = validator(target);
         // Return the status and log for each workflow file validated
         if (!valid) {
@@ -37,10 +34,15 @@ async function validateYmlSchema(filename){
 }
 
 module.exports = async (allFiles) => {
+
+    const response = await axios.get('https://json.schemastore.org/github-workflow.json',{responseType: 'application/json'});
+    const schema = response.data;
+    const ajv = new Ajv({ strict: false, allErrors: true });
+    const validator = ajv.compile(schema);
     const allLogs = {}
     allFiles = allFiles.split(' ');
     for(file of allFiles){
-        let log = await validateYmlSchema(file);
+        let log = validateYmlSchema(file, validator);
         if(!log['status']){
             allLogs[file] = log['log']
         }
