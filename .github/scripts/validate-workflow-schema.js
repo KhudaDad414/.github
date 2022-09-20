@@ -11,10 +11,8 @@ async function validateYmlSchema(filename){
     const schema = response.data;
     const file = fs.readFileSync(filename, 'utf8');
     try{
-        const file = fs.readFileSync(filename);
         const target = yaml.load(file);
         const ajv = new Ajv({ strict: false, allErrors: true });
-        console.log('schema: ',schema);
         const validator = ajv.compile(schema);
         const valid = validator(target);
         // Return the status and log for each workflow file validated
