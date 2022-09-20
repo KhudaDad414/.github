@@ -17,7 +17,6 @@ async function validateYmlSchema(filename){
         const valid = validator(target);
         // Return the status and log for each workflow file validated
         if (!valid) {
-            console.log(validator.errors);
             return {
                 'status' : false,
                 'log': validator.errors
@@ -41,7 +40,7 @@ module.exports = async (allFiles) => {
     const allLogs = {}
     allFiles = allFiles.split(' ');
     for(file of allFiles){
-        let log = validateYmlSchema(file);
+        let log = await validateYmlSchema(file);
         if(!log['status']){
             allLogs[file] = log['log']
         }
