@@ -7,7 +7,8 @@ const axios = require('axios').default;
 
 async function validateYmlSchema(filename){
     // Read the schema and workflow file synchronously
-    const schema = await axios.get('https://json.schemastore.org/github-workflow.json');
+    const response = await axios.get('https://json.schemastore.org/github-workflow.json');
+    const schema = JSON.stringify(response);
     const file = fs.readFileSync(filename, 'utf8');
     try{
         const target = yaml.load(filename);
