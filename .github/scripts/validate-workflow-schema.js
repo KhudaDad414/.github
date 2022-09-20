@@ -11,7 +11,8 @@ async function validateYmlSchema(filename){
     const schema = response.data;
     const file = fs.readFileSync(filename, 'utf8');
     try{
-        const target = yaml.load(filename);
+        const file = fs.readFileSync(filename);
+        const target = yaml.load(file);
         const ajv = new Ajv({ strict: false, allErrors: true });
         console.log('schema: ',schema);
         const validator = ajv.compile(schema);
