@@ -18,6 +18,7 @@ async function validateYmlSchema(filename){
         const valid = validator(target);
         // Return the status and log for each workflow file validated
         if (!valid) {
+            console.log(validator.errors)
             return {
                 'status' : false,
                 'log': validator.errors
