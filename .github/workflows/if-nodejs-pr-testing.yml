@@ -18,12 +18,12 @@ jobs:
     steps:
       - if: >
           !github.event.pull_request.draft &&
-          !contains(fromJSON(['asyncapi-bot', 'allcontributors']), github.actor)
-          !contains(fromJSON([
+          !contains(fromJSON("['asyncapi-bot', 'allcontributors']"), github.actor)
+          !contains(fromJSON("[
             'ci: update global workflows',
             'ci: update generic workflows',
             'chore: update code of conduct'
-          ]), 
+          ]"), 
           github.event.pull_request.title)
         id: should_run
         name: Should Run
